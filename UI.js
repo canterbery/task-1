@@ -25,8 +25,7 @@ export function createBootstrapButtonGroup() {
   return group;
 }
 
-export function createButtonGroup(notes, key) {
-  let note = notes.get(key);
+export function createButtonGroup(note, key) {
   let group = createBootstrapButtonGroup();
 
   const editButton = createBootstrapSecondaryButton(
@@ -78,7 +77,7 @@ export function createButtonGroup(notes, key) {
 
 function startEditNote(key, note) {
   NoteForEditId.noteIdToEdit = key;
-  document.getElementById("notetype").value = note.Category;
-  document.getElementById("notename").value = note.Name;
-  document.getElementById("notecontent").value = note.Content;
+  document.getElementById("notetype").value = note.category;
+  document.getElementById("notename").value = note.name;
+  document.getElementById("notecontent").value = note.content;
 }

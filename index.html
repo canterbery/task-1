@@ -68,7 +68,7 @@
     </div>
 
     <div class="table-responsive">
-      <table class="table table-info table-bordered" id="tablestat">
+      <table class="table table-info table-bordered" id="summary">
         <thead>
           <tr>
             <th scope="col">Category</th>
@@ -106,7 +106,7 @@
                 ><nav>Note Type</nav></label
               >
               <select class="form-select" id="notetype">
-                <option selected>Choose...</option>
+                <option selected value="1">Choose...</option>
               </select>
             </div>
             <div class="input-group mb-3">
@@ -139,12 +139,7 @@
 
           <!-- Modal footer -->
           <div class="modal-footer">
-            <button
-              type="submit"
-              class="btn btn-primary"
-              data-bs-dismiss="modal"
-              id="addnote"
-            >
+            <button type="submit" class="btn btn-primary" id="addnote">
               Save
             </button>
             <button

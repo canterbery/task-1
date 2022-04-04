@@ -7,13 +7,13 @@ function getTypeStatistic() {
   });
 
   Notes.forEach((elem) => {
-    let cur = data[elem.Category];
+    let cur = data[elem.category];
     elem.isArchived ? cur[1]++ : cur[0]++;
   });
   return data;
 }
 
-export function showStats() {
+export function renderSummaryTable() {
   const data = getTypeStatistic();
 
   const exists = document.getElementById("statistic");
@@ -38,5 +38,5 @@ export function showStats() {
     return col;
   }
 
-  document.getElementById("tablestat").appendChild(statistic);
+  return statistic;
 }
