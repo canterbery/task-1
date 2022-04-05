@@ -1,5 +1,5 @@
-import { Notes, NoteForEditId } from "./initialData.js";
-import { showStats } from "./createStatistic.js";
+import { Notes, NoteForEditId } from "./appData.js";
+import { renderSummaryTable } from "./createSummary.js";
 
 export function createBootstrapSecondaryButton(value) {
   let button = document.createElement("button");
@@ -25,8 +25,7 @@ export function createBootstrapButtonGroup() {
   return group;
 }
 
-export function createButtonGroup(notes, key) {
-  let note = notes.get(key);
+export function createButtonGroup(note, key) {
   let group = createBootstrapButtonGroup();
 
   const editButton = createBootstrapSecondaryButton(
@@ -34,39 +33,55 @@ export function createButtonGroup(notes, key) {
   );
   editButton.setAttribute("data-bs-target", "#myModal");
   editButton.setAttribute("data-bs-toggle", "modal");
-  editButton.addEventListener("click", (e) => startEditNote(key, note));
+
+  addTooltip(editButton, "Edit");
+  editButton.addEventListener("click", () => startEditNote(key, note));
 
   const deleteButton = createBootstrapSecondaryButton(
     '<i class="icon-trash"></i>'
   );
-  deleteButton.addEventListener("click", (e) => {
+
+  addTooltip(deleteButton, "Delete");
+
+  deleteButton.addEventListener("click", () => {
     Notes.delete(key);
     document.getElementById(key).remove();
-    showStats();
+    document
+      .getElementById("summary")
+      .replaceChild(renderSummaryTable(), document.getElementById("statistic"));
   });
 
   const archiveButton = createBootstrapSecondaryButton(
     '<i class="icon-calendar-empty"></i>'
   );
   archiveButton.classList.add("archive");
+
+  addTooltip(archiveButton, "Archivate");
+
   archiveButton.addEventListener("click", (e) => {
     note.isArchived = true;
     let row = document.getElementById(key);
     row.classList.remove("active");
     row.classList.add("archived");
-    showStats();
+    document
+      .getElementById("summary")
+      .replaceChild(renderSummaryTable(), document.getElementById("statistic"));
   });
 
   const restoreButton = createBootstrapSecondaryButton(
     '<i class="icon-calendar">'
   );
   restoreButton.classList.add("restore");
+  addTooltip(restoreButton, "Restore");
+
   restoreButton.addEventListener("click", (e) => {
     note.isArchived = false;
     let row = document.getElementById(key);
     row.classList.remove("archived");
     row.classList.add("active");
-    showStats();
+    document
+      .getElementById("summary")
+      .replaceChild(renderSummaryTable(), document.getElementById("statistic"));
   });
 
   const buttons = [editButton, archiveButton, restoreButton, deleteButton];
@@ -78,7 +93,13 @@ export function createButtonGroup(notes, key) {
 
 function startEditNote(key, note) {
   NoteForEditId.noteIdToEdit = key;
-  document.getElementById("notetype").value = note.Category;
-  document.getElementById("notename").value = note.Name;
-  document.getElementById("notecontent").value = note.Content;
+  document.getElementById("notetype").value = note.category;
+  document.getElementById("notename").value = note.name;
+  document.getElementById("notecontent").value = note.content;
+}
+
+function addTooltip(button, tooltip) {
+  button.setAttribute("data-toggle", "tooltip");
+  button.setAttribute("data-placement", "top");
+  button.setAttribute("title", tooltip);
 }

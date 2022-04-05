@@ -50,10 +50,19 @@
                   data-toggle="tooltip"
                   data-placement="top"
                   title="Add Note"
+                  id="modal"
+                  ;
                 >
                   <i class="icon-pencil"></i>
                 </button>
-                <button type="button" class="btn btn-secondary" id="show">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  id="show"
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  title="Show archived notes"
+                >
                   <i class="icon-calendar-empty"></i>
                 </button>
                 <button type="button" class="btn btn-secondary" id="hide">
@@ -63,12 +72,11 @@
             </th>
           </tr>
         </thead>
-        <tbody id="notes"></tbody>
       </table>
     </div>
 
     <div class="table-responsive">
-      <table class="table table-info table-bordered" id="tablestat">
+      <table class="table table-info table-bordered" id="summary">
         <thead>
           <tr>
             <th scope="col">Category</th>
@@ -76,7 +84,6 @@
             <th scope="col">Archived</th>
           </tr>
         </thead>
-        <tbody id="statistic"></tbody>
       </table>
     </div>
 
@@ -106,7 +113,7 @@
                 ><nav>Note Type</nav></label
               >
               <select class="form-select" id="notetype">
-                <option selected>Choose...</option>
+                <option selected value="1">Choose...</option>
               </select>
             </div>
             <div class="input-group mb-3">
@@ -139,12 +146,7 @@
 
           <!-- Modal footer -->
           <div class="modal-footer">
-            <button
-              type="submit"
-              class="btn btn-primary"
-              data-bs-dismiss="modal"
-              id="addnote"
-            >
+            <button type="submit" class="btn btn-primary" id="addnote">
               Save
             </button>
             <button

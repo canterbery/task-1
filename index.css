@@ -4,19 +4,6 @@
   padding: 15px;
 }
 
-.table-borderless9 td,
-.table-borderless9 th {
-  border: 0;
-  background-color: lightgray;
-}
-
-.note {
-  background-color: lavender;
-  margin: 10px 0px;
-  border: 1x solid gray;
-  padding: 5px;
-}
-
 .btn-group button {
   margin: 10px 0px;
 }

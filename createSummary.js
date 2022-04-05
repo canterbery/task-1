@@ -1,25 +1,20 @@
-import { Notes, noteCategories } from "./initialData.js";
+import { Notes, noteCategories } from "./appData.js";
 
-function getTypeStatistic() {
+function getSummaryStats() {
   let data = {};
   noteCategories.forEach((elem) => {
     data[elem] = [0, 0];
   });
 
   Notes.forEach((elem) => {
-    let cur = data[elem.Category];
+    let cur = data[elem.category];
     elem.isArchived ? cur[1]++ : cur[0]++;
   });
   return data;
 }
 
-export function showStats() {
-  const data = getTypeStatistic();
-
-  const exists = document.getElementById("statistic");
-  if (exists) {
-    exists.remove();
-  }
+export function renderSummaryTable() {
+  const data = getSummaryStats();
 
   let statistic = document.createElement("tbody");
   statistic.setAttribute("id", "statistic");
@@ -38,5 +33,5 @@ export function showStats() {
     return col;
   }
 
-  document.getElementById("tablestat").appendChild(statistic);
+  return statistic;
 }
