@@ -9,14 +9,6 @@ export function createBootstrapSecondaryButton(value) {
   button.innerHTML = value;
   return button;
 }
-export function createBootstrapTableColumn(value) {
-  let col = document.createElement("div");
-  col.classList.add("col");
-  col.classList.add("note");
-  col.classList.add("text-truncate");
-  col.innerHTML = value;
-  return col;
-}
 
 export function createBootstrapButtonGroup() {
   let group = document.createElement("div");
@@ -35,7 +27,12 @@ export function createButtonGroup(note, key) {
   editButton.setAttribute("data-bs-toggle", "modal");
 
   addTooltip(editButton, "Edit");
-  editButton.addEventListener("click", () => startEditNote(key, note));
+  editButton.addEventListener("click", () => {
+    NoteForEditId.noteIdToEdit = key;
+    document.getElementById("notetype").value = note.category;
+    document.getElementById("notename").value = note.name;
+    document.getElementById("notecontent").value = note.content;
+  });
 
   const deleteButton = createBootstrapSecondaryButton(
     '<i class="icon-trash"></i>'
@@ -58,7 +55,7 @@ export function createButtonGroup(note, key) {
 
   addTooltip(archiveButton, "Archivate");
 
-  archiveButton.addEventListener("click", (e) => {
+  archiveButton.addEventListener("click", () => {
     note.isArchived = true;
     let row = document.getElementById(key);
     row.classList.remove("active");
@@ -74,7 +71,7 @@ export function createButtonGroup(note, key) {
   restoreButton.classList.add("restore");
   addTooltip(restoreButton, "Restore");
 
-  restoreButton.addEventListener("click", (e) => {
+  restoreButton.addEventListener("click", () => {
     note.isArchived = false;
     let row = document.getElementById(key);
     row.classList.remove("archived");
@@ -89,13 +86,6 @@ export function createButtonGroup(note, key) {
     group.appendChild(button);
   }
   return group;
-}
-
-function startEditNote(key, note) {
-  NoteForEditId.noteIdToEdit = key;
-  document.getElementById("notetype").value = note.category;
-  document.getElementById("notename").value = note.name;
-  document.getElementById("notecontent").value = note.content;
 }
 
 function addTooltip(button, tooltip) {
