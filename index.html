@@ -50,10 +50,19 @@
                   data-toggle="tooltip"
                   data-placement="top"
                   title="Add Note"
+                  id="modal"
+                  ;
                 >
                   <i class="icon-pencil"></i>
                 </button>
-                <button type="button" class="btn btn-secondary" id="show">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  id="show"
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  title="Show archived notes"
+                >
                   <i class="icon-calendar-empty"></i>
                 </button>
                 <button type="button" class="btn btn-secondary" id="hide">
@@ -63,7 +72,6 @@
             </th>
           </tr>
         </thead>
-        <tbody id="notes"></tbody>
       </table>
     </div>
 
@@ -76,7 +84,6 @@
             <th scope="col">Archived</th>
           </tr>
         </thead>
-        <tbody id="statistic"></tbody>
       </table>
     </div>
 

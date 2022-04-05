@@ -1,5 +1,5 @@
-import { Notes } from "./initialData.js";
-import { createButtonGroup } from "./UI.js";
+import { Notes } from "./appData.js";
+import { createButtonGroup } from "./buttons.js";
 
 export function renderNoteTable() {
   let container = document.createElement("tbody");

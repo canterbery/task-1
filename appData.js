@@ -1,9 +1,4 @@
-export const noteCategories = [
-  "Task",
-  "Random Thought",
-  "Idea",
-  "Test Category",
-];
+export const noteCategories = ["Task", "Random Thought", "Idea"];
 export let curentId = 11;
 export function getNextId() {
   return ++curentId;

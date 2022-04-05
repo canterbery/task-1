@@ -1,6 +1,6 @@
-import { Notes, noteCategories } from "./initialData.js";
+import { Notes, noteCategories } from "./appData.js";
 
-function getTypeStatistic() {
+function getSummaryStats() {
   let data = {};
   noteCategories.forEach((elem) => {
     data[elem] = [0, 0];
@@ -14,12 +14,7 @@ function getTypeStatistic() {
 }
 
 export function renderSummaryTable() {
-  const data = getTypeStatistic();
-
-  const exists = document.getElementById("statistic");
-  if (exists) {
-    exists.remove();
-  }
+  const data = getSummaryStats();
 
   let statistic = document.createElement("tbody");
   statistic.setAttribute("id", "statistic");
