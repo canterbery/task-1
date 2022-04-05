@@ -90,7 +90,7 @@ let Notes = new Map([
       created: "May 2,2021",
       category: "Idea",
       content: "at my place 3/13/2021",
-      cates: "3/13/2021",
+      dates: "3/13/2021",
       isArchived: true,
     },
   ],
